@@ -13,10 +13,12 @@ final class MotionDetector: ObservableObject {
     static public let shared = MotionDetector()
     @Published var lock = false
     @Published var data = [DataModel]()
+    @Published var assetIndex = 0
 
     private init() {}
     private let motionManager = CMMotionManager()
     private var isFacedown = false
+    private var toChange = true
     
     func startMotionDetector() {
         data = []
@@ -27,11 +29,20 @@ final class MotionDetector: ObservableObject {
             guard let self = self, let gravity = data?.gravity else { return }
 
             recordData(x: gravity.x, y: gravity.y, z: gravity.z)
+            if gravity.z > -0.5 {
+                toChange = true
+            }
+            if gravity.z < -0.9 && toChange {
+                Task {
+                    self.assetIndex = self.assetIndex >= Asset.portfolio.count - 1 ? 0 : self.assetIndex + 1
+                }
+                toChange = false
+            }
             if gravity.z > Constants.faceDownThreshold {
                 if !self.isFacedown {
                     self.isFacedown = true
                     Task {
-                        //self.lock = !self.lock
+                        self.lock = !self.lock
                     }
                 }
             } else if gravity.z < 0 {

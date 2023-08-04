@@ -16,6 +16,7 @@
 		C6717D572A7996D300B5CC61 /* MotionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6717D562A7996D300B5CC61 /* MotionDetector.swift */; };
 		C6717D592A79A5F100B5CC61 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6717D582A79A5F100B5CC61 /* StringLiterals.swift */; };
 		C6717D602A79A6E200B5CC61 /* MotionDataChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6717D5F2A79A6E200B5CC61 /* MotionDataChart.swift */; };
+		C69C16792A7CEF6900A5664E /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C16782A7CEF6900A5664E /* MarketData.swift */; };
 		C6C240412A7BD9ED001FBDF5 /* NotificationCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C240402A7BD9ED001FBDF5 /* NotificationCenterView.swift */; };
 		C6D6910B2A7B040700E13C18 /* ChartAxisSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6910A2A7B040700E13C18 /* ChartAxisSwitcher.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		C6717D562A7996D300B5CC61 /* MotionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDetector.swift; sourceTree = "<group>"; };
 		C6717D582A79A5F100B5CC61 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		C6717D5F2A79A6E200B5CC61 /* MotionDataChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDataChart.swift; sourceTree = "<group>"; };
+		C69C16782A7CEF6900A5664E /* MarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData.swift; sourceTree = "<group>"; };
 		C6C240402A7BD9ED001FBDF5 /* NotificationCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterView.swift; sourceTree = "<group>"; };
 		C6D6910A2A7B040700E13C18 /* ChartAxisSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartAxisSwitcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 				C6717D582A79A5F100B5CC61 /* StringLiterals.swift */,
 				C6204FDE2A7AC6B500C44CE5 /* MenuButton.swift */,
 				C6D6910A2A7B040700E13C18 /* ChartAxisSwitcher.swift */,
+				C69C16782A7CEF6900A5664E /* MarketData.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				C6204FE12A7AD00100C44CE5 /* MarketDataChart.swift in Sources */,
 				C6C240412A7BD9ED001FBDF5 /* NotificationCenterView.swift in Sources */,
 				C6717D492A7996AB00B5CC61 /* MobiusNov2023App.swift in Sources */,
+				C69C16792A7CEF6900A5664E /* MarketData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
