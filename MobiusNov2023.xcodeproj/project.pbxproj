@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C6204FDF2A7AC6B500C44CE5 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6204FDE2A7AC6B500C44CE5 /* MenuButton.swift */; };
 		C6204FE12A7AD00100C44CE5 /* MarketDataChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6204FE02A7AD00100C44CE5 /* MarketDataChart.swift */; };
+		C64134892AE0EAF00085BFBF /* DeviceMotionPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64134882AE0EAF00085BFBF /* DeviceMotionPages.swift */; };
 		C6717D492A7996AB00B5CC61 /* MobiusNov2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6717D482A7996AB00B5CC61 /* MobiusNov2023App.swift */; };
 		C6717D4B2A7996AB00B5CC61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6717D4A2A7996AB00B5CC61 /* ContentView.swift */; };
 		C6717D4D2A7996AC00B5CC61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6717D4C2A7996AC00B5CC61 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		C6204FDE2A7AC6B500C44CE5 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		C6204FE02A7AD00100C44CE5 /* MarketDataChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataChart.swift; sourceTree = "<group>"; };
+		C64134882AE0EAF00085BFBF /* DeviceMotionPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotionPages.swift; sourceTree = "<group>"; };
 		C6717D452A7996AB00B5CC61 /* MobiusNov2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobiusNov2023.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6717D482A7996AB00B5CC61 /* MobiusNov2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobiusNov2023App.swift; sourceTree = "<group>"; };
 		C6717D4A2A7996AB00B5CC61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				C6204FE02A7AD00100C44CE5 /* MarketDataChart.swift */,
 				C6717D5F2A79A6E200B5CC61 /* MotionDataChart.swift */,
 				C6C240402A7BD9ED001FBDF5 /* NotificationCenterView.swift */,
+				C64134882AE0EAF00085BFBF /* DeviceMotionPages.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				C6C240412A7BD9ED001FBDF5 /* NotificationCenterView.swift in Sources */,
 				C6717D492A7996AB00B5CC61 /* MobiusNov2023App.swift in Sources */,
 				C69C16792A7CEF6900A5664E /* MarketData.swift in Sources */,
+				C64134892AE0EAF00085BFBF /* DeviceMotionPages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

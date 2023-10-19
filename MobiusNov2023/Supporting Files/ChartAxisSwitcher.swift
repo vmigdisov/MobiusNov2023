@@ -33,16 +33,16 @@ struct ChartAxisSwitcher: View {
     ) -> some View {
         Button(action: onTap) {
             Text(text)
-                .foregroundColor(isSelected ? Color.white : Color.accentColor)
+                .foregroundColor(isSelected ? Color.white : Color.purple)
                 .frame(width: Constants.buttonSize, height: Constants.buttonSize)
         }
         .overlay {
             RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .stroke(isSelected ? Color.clear :  Color.accentColor)
+                .stroke(isSelected ? Color.clear :  Color.purple)
         }
         .background {
             RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .fill(isSelected ? Color.accentColor :  Color.clear)
+                .fill(isSelected ? Color.purple :  Color.clear)
         }
     }
     

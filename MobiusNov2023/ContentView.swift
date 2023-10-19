@@ -28,14 +28,9 @@ struct ContentView: View {
                     MenuButtonView("Gyroscope", .green)
                 }
                 NavigationLink(
-                    destination: MotionDataChart(dataSource: .motion)
+                    destination: DeviceMotionPages()
                 ) {
                     MenuButtonView("Device Motion", .cyan)
-                }
-                NavigationLink(
-                    destination: MarketDataChart()
-                ) {
-                    MenuButtonView("Market Data", .purple)
                 }
             }
             .onAppear {

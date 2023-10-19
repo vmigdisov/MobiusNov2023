@@ -15,19 +15,33 @@ struct MarketDataChart: View {
         ZStack {
             if motionDetector.lock {
                 Image(systemName: .lockImage)
+                    .resizable()
                     .frame(
                         width: Constants.lockSize,
                         height: Constants.lockSize
                     )
             } else {
-                Chart(MarketData.sampleData.filter {
-                    $0.asset == Asset.portfolio[motionDetector.assetIndex].name
-                }) {
-                    LineMark(
-                        x: .value("TimeStamp", $0.date),
-                        y: .value("Value", $0.price)
-                    )
-                    .foregroundStyle(by: .value("Asset", $0.asset))
+                VStack {
+                    Text(Asset.portfolio[motionDetector.assetIndex].name)
+                        .font(.largeTitle)
+                        .foregroundColor(.purple)
+                        .padding(.top)
+                    Chart(MarketData.sampleData.filter {
+                        $0.asset == Asset.portfolio[motionDetector.assetIndex].name
+                    }) {
+                        LineMark(
+                            x: .value("TimeStamp", $0.date),
+                            y: .value("Value", $0.price),
+                            series: .value("price", "A")
+                        ).foregroundStyle(.red)
+                        if motionDetector.showIndicators {
+                            LineMark(
+                                x: .value("TimeStamp", $0.date),
+                                y: .value("Value", $0.avg),
+                                series: .value("mid", "B")
+                            ).foregroundStyle(.green)                            
+                        }
+                    }
                 }
             }
         }

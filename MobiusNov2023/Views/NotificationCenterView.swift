@@ -12,14 +12,17 @@ struct NotificationCenterView: View {
     @State var isLocked = false
     
     var body: some View {
-        Text(isLocked ?  Constants.isLockedText : Constants.isUnlockedText)
+        Text(isLocked ?  "****" : "100 ₽")
             .font(Constants.lockFont)
             .foregroundColor(.accentColor)
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            .onReceive(
+                NotificationCenter.default.publisher(
+                    for: UIDevice.orientationDidChangeNotification
+                )
+            ) { _ in
                 if UIDevice.current.orientation == .faceDown {
                     isLocked.toggle()
                 }
-                print("\(UIDevice.current.orientation)")
             }
     }
     
@@ -27,8 +30,6 @@ struct NotificationCenterView: View {
     
     private enum Constants {
         static let lockFont = Font.system(size: 150, weight: .ultraLight)
-        static let isLockedText = "****"
-        static let isUnlockedText = "100 ₽"
     }
 }
 

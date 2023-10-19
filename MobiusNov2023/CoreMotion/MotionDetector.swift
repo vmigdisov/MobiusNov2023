@@ -14,35 +14,65 @@ final class MotionDetector: ObservableObject {
     @Published var lock = false
     @Published var data = [DataModel]()
     @Published var assetIndex = 0
+    @Published var showIndicators = false
 
     private init() {}
     private let motionManager = CMMotionManager()
     private var isFacedown = false
-    private var toChange = true
+    private var toChangeAsset = false
+    private var toShowIndicator = false
+    private var toHideIndicator = false
     
     func startMotionDetector() {
         data = []
         guard motionManager.isDeviceMotionAvailable else { return }
         guard !motionManager.isDeviceMotionActive else { return }
+        
+        motionManager.deviceMotionUpdateInterval = 0.1
 
         motionManager.startDeviceMotionUpdates(to: OperationQueue()) { [weak self] data, _ in
             guard let self = self, let gravity = data?.gravity else { return }
-
+            
             recordData(x: gravity.x, y: gravity.y, z: gravity.z)
-            if gravity.z > -0.5 {
-                toChange = true
+            
+            /// Показ индикатора средней цены
+            if gravity.y < 0.2 && gravity.y > -0.2 && (toShowIndicator || toHideIndicator)  {
+                Task {
+                    if self.toShowIndicator {
+                        self.showIndicators = true
+                        self.toShowIndicator = false
+                    }
+                    if self.toHideIndicator {
+                        self.showIndicators = false
+                        self.toHideIndicator = false
+                    }
+                }
             }
-            if gravity.z < -0.9 && toChange {
+            if gravity.y < -0.4 {
+                toHideIndicator = true
+            }
+            
+            if gravity.y > 0.4 {
+                toShowIndicator = true
+            }
+            
+            /// Переключение инструментов
+            if gravity.z > -0.4 && toChangeAsset {
                 Task {
                     self.assetIndex = self.assetIndex >= Asset.portfolio.count - 1 ? 0 : self.assetIndex + 1
+                    self.toChangeAsset = false
                 }
-                toChange = false
             }
-            if gravity.z > Constants.faceDownThreshold {
+            if gravity.z < -0.8 {
+                toChangeAsset = true
+            }
+            
+            /// Показ графика данных гироскопа
+            if gravity.z > 0.8 {
                 if !self.isFacedown {
                     self.isFacedown = true
                     Task {
-                        self.lock = !self.lock
+                        self.lock.toggle()
                     }
                 }
             } else if gravity.z < 0 {
@@ -58,6 +88,8 @@ final class MotionDetector: ObservableObject {
         guard motionManager.isAccelerometerAvailable else { return }
         guard !motionManager.isAccelerometerActive else { return }
         
+        motionManager.accelerometerUpdateInterval = 0.1
+        
         motionManager.startAccelerometerUpdates(to: OperationQueue()) { [weak self] data, _ in
             guard let data, let self else { return }
             recordData(x: data.acceleration.x, y: data.acceleration.y, z: data.acceleration.z)
@@ -68,6 +100,8 @@ final class MotionDetector: ObservableObject {
         data = []
         guard motionManager.isGyroAvailable else { return }
         guard !motionManager.isGyroActive else { return }
+        
+        motionManager.gyroUpdateInterval = 0.1
         
         motionManager.startGyroUpdates(to: OperationQueue()) { [weak self] data, _ in
             guard let data, let self else { return }
@@ -88,9 +122,9 @@ final class MotionDetector: ObservableObject {
             self.data.append(DataModel(date: date, axis: .y, value: y))
             self.data.append(DataModel(date: date, axis: .z, value: z))
             
-//            if self.data.count > Constants.dataCount {
-//                self.data.removeFirst()
-//            }
+            if self.data.count > Constants.dataCount {
+                self.data.removeFirst()
+            }
         }
     }
     
@@ -110,7 +144,6 @@ final class MotionDetector: ObservableObject {
     }
     
     enum Constants {
-        static let faceDownThreshold = 0.8
         static let dataCount = 100
     }
 }
