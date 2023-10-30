@@ -42,7 +42,7 @@ struct ChartAxisSwitcher: View {
         }
         .background {
             RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .fill(isSelected ? Color.purple :  Color.clear)
+                .fill(isSelected ? Color.purple :  Color.white)
         }
     }
     

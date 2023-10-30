@@ -30,8 +30,8 @@ final class MotionDetector: ObservableObject {
         
         motionManager.deviceMotionUpdateInterval = 0.1
 
-        motionManager.startDeviceMotionUpdates(to: OperationQueue()) { [weak self] data, _ in
-            guard let self = self, let gravity = data?.gravity else { return }
+        motionManager.startDeviceMotionUpdates(to: OperationQueue()) { [weak self] (data: CMDeviceMotion?, error: Error?) in
+            guard let self = self, let gravity = data?.gravity, error == nil else { return }
             
             recordData(x: gravity.x, y: gravity.y, z: gravity.z)
             
@@ -90,8 +90,8 @@ final class MotionDetector: ObservableObject {
         
         motionManager.accelerometerUpdateInterval = 0.1
         
-        motionManager.startAccelerometerUpdates(to: OperationQueue()) { [weak self] data, _ in
-            guard let data, let self else { return }
+        motionManager.startAccelerometerUpdates(to: OperationQueue()) { [weak self] (data: CMAccelerometerData?, error: Error?) in
+            guard let data, let self, error == nil else { return }
             recordData(x: data.acceleration.x, y: data.acceleration.y, z: data.acceleration.z)
         }
     }
